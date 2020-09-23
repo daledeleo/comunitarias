@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/grupos-de-apoyo/grupo-de-apoyo-detalles"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="editar!='editar'">Ingresando a un nuevo miembro</ion-title>
+    <ion-title *ngIf="editar=='editar'">Editando la información</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formMiembro">
+    <!--
+    <ion-button color="success" slot='end' (click)='enviarDatosOk()' 
+    [hidden]='!verificarEdicion()'>Ok</ion-button>-->
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Nombres</ion-label>
+        <ion-input inputmode="text" formControlName="nombre"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Apellidos</ion-label>
+        <ion-input inputmode="text" formControlName="apellidos"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Telefono</ion-label>
+        <ion-input inputmode="number" formControlName="telefono"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-button expand='full' (click)='enviarDatos()' [disabled]="check()" *ngIf="editar!='editar'">
+      Guardar Miembro<ion-icon slot="end" name="create"></ion-icon>
+    </ion-button>
+
+    <ion-button expand='full' (click)='enviarDatos()' [disabled]="check()" *ngIf="editar=='editar'">
+      Guardar Edicion<ion-icon slot="end" name="create"></ion-icon>
+    </ion-button>
+    </form>
+</ion-content>

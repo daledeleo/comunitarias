@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-menu-button color = "primary" menu= "menu">
+      </ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title>Campañas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" [routerLink]="['generar-campaign']" routerDirection="root">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+   <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+           </ion-refresher-content>
+  </ion-refresher>
+ 
+  <ion-card *ngFor="let campaign of campaigns; let index= i">
+    <ion-item>
+      <ion-label [routerLink]="['detallecampaign',campaign.id]">{{campaign.name}}</ion-label>
+      
+      <ion-button fill="outline" size='small' [routerLink]="['editarcampaign',campaign.id]">
+        <ion-icon name="create"></ion-icon >
+      </ion-button>
+
+      <ion-button fill="outline" slot="end" size='small' color="danger" (click)="presentAlertElimnarCampaign(campaign.id)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-card-content>
+     <p>{{campaign.description}}</p>
+    </ion-card-content>
+  </ion-card>
+ 
+
+</ion-content>

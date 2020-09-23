@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button color="primary" menu="menu">
+      </ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Distribuciones</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content class="ion-padding">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+      refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let data of distribucion_registrada">
+
+    <ion-item>
+      <ion-label>Acciones:</ion-label>
+      <!--Esta es para poder editar un centro dee acopio ya registrado-->
+      <ion-button fill="outline" size='small' (click)='editar(data.id)' slot='end' [routerLink]="['./centro-acopio-registro']">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+
+      <!--Esta es para poder eliminar un centro dee acopio ya registrado-->
+      <ion-button fill="outline" size='small' slot='end' (click)="presentAlertConfirm(data.id)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-grid (click)="goDetails(data.id)">
+      <ion-label><b>Lugar de partida:</b>{{data.departureAddress}}</ion-label><br><br>
+
+      <ion-label><b>Lugar de origen:</b>{{data.destinationAddress}}</ion-label><br><br>
+
+      <ion-label><b>Encargado (tipo):</b>{{data.manager_type}}</ion-label><br><br>
+    </ion-grid>
+
+  </ion-card>
+
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed" routerLink="./registro-distribucion"
+        routerDirection="root">
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+</ion-content>

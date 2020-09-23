@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/provider"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Proveedor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form #formulario="ngForm" >
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">Nombre <ion-text color="danger"></ion-text></ion-label>
+        <ion-input required type="text" value="{{provider.name}}" [(ngModel)]='formularios.name' name='name'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Dirección</ion-label>
+        <ion-textarea [(ngModel)]='formularios.address' value="{{provider.address}}" name='address'  autoGrow="true" minlength="1" required></ion-textarea>
+      </ion-item>
+     <ion-item>
+        <ion-label position="floating">Telefono <ion-text color="danger"></ion-text></ion-label>
+        <ion-input required type="text"  name="phoneNumber" value="{{provider.phoneNumber}}" [(ngModel)]='formularios.phoneNumber' ></ion-input>
+      </ion-item>
+   
+     <ion-item>
+        <ion-label position="floating">Email <ion-text color="danger"></ion-text></ion-label>
+        <ion-input required type="text" value="{{provider.email}}" name="email" [(ngModel)]='formularios.email' ></ion-input>
+      </ion-item>
+
+       <ion-item>
+        <ion-label>Categorias</ion-label>
+        <ion-select placeholder="Seleccione" multiple="true" [value]="categorias_selected"  required [(ngModel)]='formularios.categories' name='categories'>
+            <ion-select-option *ngFor="let categoria of categorias" value="{{categoria.id}}">{{categoria.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+   
+    
+    </ion-list>
+    <div class="ion-padding">
+      <ion-button  shape="round" type="submit" [disabled]="formulario.invalid" (click)="updateProvider()" expand="block" >
+      Guardar 
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

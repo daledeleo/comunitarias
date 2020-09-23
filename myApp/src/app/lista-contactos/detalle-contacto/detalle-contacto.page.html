@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>Detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{contacto.firstName}} {{contacto.lastName}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+        <ion-card-subtitle color="dark">Redes sociales: </ion-card-subtitle>
+          {{contacto.social}}
+        </ion-card-content>
+
+        <ion-card-content>
+         <ion-card-subtitle color="dark">Telefono: </ion-card-subtitle>
+          {{contacto.phoneNumber}}
+        </ion-card-content>
+  
+      </ion-card>
+</ion-content>

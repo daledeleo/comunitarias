@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/donaciones"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>Detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+      <ion-card>
+        <ion-img src="{{donacion.photo}}"></ion-img>
+        <ion-card-header>
+          <ion-card-title>{{provider.name}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-card-subtitle>Categoria: {{categoria.name}}</ion-card-subtitle>
+         <ion-card-subtitle>Centro de Acopio: {{centroacopio.name}}</ion-card-subtitle>
+        </ion-card-content>
+        
+        
+        <ion-card-content>
+          <ion-text color="dark">
+            <h2>Responsables</h2>
+          </ion-text>
+
+          <ion-card-subtitle>Grupos de Apoyos:</ion-card-subtitle>
+          <ng-container  *ngFor="let user of donacion.users">
+            <ng-container  *ngFor="let grupos of gruposApoyos">
+              <ng-container  *ngIf="user==grupos.user">
+                <p>{{grupos.name}}</p>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+          
+
+          <ion-card-subtitle>Voluntarios:</ion-card-subtitle>
+          <ng-container  *ngFor="let user of donacion.users">
+            <ng-container  *ngFor="let voluntario of voluntarios">
+              <ng-container  *ngIf="user == voluntario.user">
+                <p>{{voluntario.firstName}} {{voluntario.lastName}}</p>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ion-card-content>
+  
+
+
+        
+        <ion-card-content>
+          <ion-card-subtitle color="dark">Descripcion:</ion-card-subtitle>
+          <p>{{donacion.description}}</p>
+        </ion-card-content>
+
+        <ion-card-content>
+          <p>Fecha de inicio: {{donacion.beginDate}}</p>
+          <p>Fecha de caducidad: {{donacion.expirationDate}}</p>
+       </ion-card-content>
+
+      </ion-card>
+</ion-content>

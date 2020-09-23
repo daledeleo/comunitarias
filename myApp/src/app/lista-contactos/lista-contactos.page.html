@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" >
+      <ion-back-button (click)="dirigirpantalla()"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>Lista de Contactos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="generarcontacto()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+   <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+           </ion-refresher-content>
+  </ion-refresher>
+ 
+  <ng-container *ngFor="let contacto of contactos; let index= i">
+  <ion-card *ngIf="contacto.provider == id">
+    <ion-item>
+      <ion-label [routerLink]="['detalle-contacto',contacto.id]">
+          {{contacto.lastName}} {{contacto.firstName}}
+      </ion-label>
+      
+      <ion-button fill="outline" size='small' [routerLink]="['editar-contacto',contacto.id]">
+        <ion-icon name="create"></ion-icon >
+      </ion-button>
+
+      <ion-button fill="outline" slot="end" size='small' color="danger" (click)="presentAlertElimnarContacto(contacto.id)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-card-content>
+     <p>{{contacto.social}}</p>
+    </ion-card-content>
+  </ion-card>
+  </ng-container>
+ 
+
+</ion-content>
+

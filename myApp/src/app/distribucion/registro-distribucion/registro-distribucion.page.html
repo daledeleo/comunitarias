@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro de Distribución</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/distribucion"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Lugar de partida</ion-label>
+        <ion-input autocapitalize inputmode="text" formControlName="lugar_partida"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Lugar de destino</ion-label>
+        <ion-input inputmode="text" formControlName="lugar_destino"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card formGroupName="encargado">
+      <ion-item>
+        <ion-label>Tipo de encargado</ion-label>
+        <ion-select interface="action-sheet" formControlName="tipo_seleccion_encargado"
+          placeholder="Seleccione una opción" (ionChange)="llenarLista($event.detail['value'])">
+          <ion-select-option  value="Grupos">Grupos</ion-select-option>
+          <ion-select-option  value="Voluntarios">Voluntarios</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item [hidden]="checktEncargadoTipo()">
+        <ion-label>Encargado {{seleccion}}</ion-label>
+        
+        <ion-select  *ngIf="accionEditar > 0" value="{{name_html}}" interface="action-sheet" formControlName="nombre" 
+          placeholder="Seleccione una opción" (ionChange)="llen($event.detail['id'])" okText="Okay" cancelText="Cancelar">
+          <ion-select-option *ngFor="let user of lista" value="{{user.user}}">{{user.name}}</ion-select-option>
+        </ion-select>
+
+        <ion-select  *ngIf="accionEditar == 0" interface="action-sheet" formControlName="nombre" placeholder="Seleccione una opción" (ionChange)="llen($event.detail['id'])" >
+            <ion-select-option *ngFor="let user of lista" value="{{user.user}}">{{user.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea inputmode="text" formControlName="descripcion"
+          placeholder="Ingrese el contenido de las donaciones...">
+        </ion-textarea>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-grid class="ion-padding">
+        <ion-row>
+          <ion-label>Foto del lugar de Destino</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-input #myInput type='file' accept="image/*" name="photo" required (change)="readURL($event);"
+            class="fileInput"></ion-input>
+          <ion-label for="file">
+            <ion-icon name="images"></ion-icon> Images
+
+            <ion-button slot='end' fill="clear" color="danger" (click)="removeImage(myInput)">
+              <ion-icon name='close'></ion-icon>
+              <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            </ion-button>
+          </ion-label>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="ion-padding" *ngIf="imageSrc != null">
+        <ion-label> Vista previa de la imagen</ion-label>
+        <ion-img id="blah" *ngIf="imageSrc != null" [src]="imageSrc" alt="your image"></ion-img>
+      </ion-grid>
+    </ion-card>
+
+    <ion-button [disabled]="isinValid()"
+      expand="block" (click)="enviarDatos()" routerLink="/distribucion">Enviar <ion-icon slot="end">
+      </ion-icon>
+    </ion-button>
+  </form>
+</ion-content>

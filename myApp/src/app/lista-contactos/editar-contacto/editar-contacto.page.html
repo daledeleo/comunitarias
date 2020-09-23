@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Editar Contacto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form #formulario="ngForm" (ngSubmit)="UpdateContacto()">
+    <ion-list lines="tel" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">Nombre </ion-label>
+        <ion-input required type="search" value="{{contacto.firstName}}" [(ngModel)]='formularios.firstName' name='firstName'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Apellidos </ion-label>
+        <ion-input required type="search" value="{{contacto.lastName}}"[(ngModel)]='formularios.lastName' name='lastName'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Redes sociales </ion-label>
+        <ion-input required type="search" value="{{contacto.social}}" [(ngModel)]='formularios.social' name='social'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Telefono </ion-label>
+        <ion-input required type="number" value="{{contacto.phoneNumber}}" [(ngModel)]='formularios.phoneNumber' name='phoneNumber'></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button   shape="round" type="submit"[disabled]="formulario.invalid" expand="block">
+      Guardar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

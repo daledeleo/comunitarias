@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/campaign"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Campaña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form #formulario="ngForm" (ngSubmit)="postCampaign()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">Campaña </ion-label>
+        <ion-input required type="search" [(ngModel)]='formularios.name' name='name'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Alcance</ion-label>
+        <ion-select placeholder="Seleccione uno" (click)="Getscopes()" [(ngModel)]='formularios.scope' name='scope' required >   
+          <ion-select-option *ngFor="let scope of Scopes" value="{{scope.id}}">{{scope.name}}
+          </ion-select-option>
+          
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripcion</ion-label>
+        <ion-textarea [(ngModel)]='formularios.description' name='description'  autoGrow="true" minlength="1" required></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contacto</ion-label>
+        <ion-textarea required type="text"  name="contactName" autoGrow="true" [(ngModel)]='formularios.contactName' ></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type='file' accept="image/*" name="photo" required [(ngModel)]='formularios.photo' (change)="readURL($event);" class="fileInput"></ion-input>
+        <ion-label for="file"><ion-icon name="images"></ion-icon> Images</ion-label>
+      </ion-item> 
+      <ion-item *ngIf="imageSrc != null">
+        <ion-img id="blah" *ngIf="imageSrc != null" [src]="imageSrc" alt="your image"></ion-img>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button  shape="round" type="submit" [disabled]="formulario.invalid" expand="block" routerDirection="root">
+      Guardar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

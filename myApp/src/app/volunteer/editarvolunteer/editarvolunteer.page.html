@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/volunteer"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Editar Voluntario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form #formulario="ngForm" (ngSubmit)="UpDatevolunteer(volunteer.user)">
+    <ion-list lines="tel" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">Nombre </ion-label>
+        <ion-input required type="search" value="{{volunteer.firstName}}" [(ngModel)]='formularios.firstName' name='firstName'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Apellidos </ion-label>
+        <ion-input required type="search" value="{{volunteer.lastName}}" [(ngModel)]='formularios.lastName' name='lastName'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Redes sociales </ion-label>
+        <ion-input required type="search" value="{{volunteer.social}}"[(ngModel)]='formularios.social' name='social'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Disponibilidad </ion-label>
+        <ion-textarea required autoGrow="true" value="{{volunteer.schedule}}" [(ngModel)]='formularios.schedule' name='schedule'></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Telefono </ion-label>
+        <ion-input required type="number" value="{{volunteer.phoneNumber}}" [(ngModel)]='formularios.phoneNumber' name='phoneNumber'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Actividades</ion-label>
+        <ion-select placeholder="Seleccione" multiple="true" [value]="activities_selected" [(ngModel)]='formularios.activities' name='activities' required >   
+          <ion-select-option *ngFor="let activity of activities" value="{{activity.id}}" selected="1">{{activity.name}}</ion-select-option>   
+        </ion-select>
+      </ion-item>
+
+      <ion-text>
+        <h4>Datos de Usuario</h4>
+      </ion-text>
+
+      <ion-item>
+        <ion-label position="floating">Usuario </ion-label>
+        <ion-input required type="search"value="{{users.username}}" [(ngModel)]='formularios.username' name='username'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Correo </ion-label>
+        <ion-input required type="email" value='{{users.email}}' [(ngModel)]='formularios.email' name='email'></ion-input>
+      </ion-item>
+
+
+
+
+
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button   shape="round" type="submit"[disabled]="formulario.invalid"  expand="block">
+      Guardar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

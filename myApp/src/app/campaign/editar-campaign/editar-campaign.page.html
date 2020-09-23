@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/categoria"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>Editar Campaña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form #formulario="ngForm" >
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">Campaña </ion-label>
+        <ion-input required type="search" [(ngModel)]='formularios.name' name='name' value="{{campaign.name}}"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Alcance</ion-label>
+        <ion-select placeholder="Seleccione uno" value="{{campaign.scope}}" (click)="Getscopes()" [(ngModel)]='formularios.scope' name='scope' required >   
+          <ion-select-option *ngFor="let scope of Scopes" value="{{scope.id}}">{{scope.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripcion</ion-label>
+        <ion-textarea [(ngModel)]='formularios.description' name='description'  autoGrow="true" minlength="1" required value="{{campaign.description}}"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contacto</ion-label>
+        <ion-textarea required type="text"  name="contactName" autoGrow="true" [(ngModel)]='formularios.contactName' value="{{campaign.contactName}}"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <input type='file' color="green" accept="image/*" name="photo" [(ngModel)]='formularios.photo' (change)="readURL($event);" class="fileInput"/>
+        <ion-label for="file"><ion-icon name="images"></ion-icon> Imagen</ion-label>
+   
+        <ion-button ion-button icon-left (click)="removePic()" color="danger">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-item>
+        <ion-img id="blah" *ngIf="imageSrc == null" src="{{campaign.photo}}" alt="your image"></ion-img>
+        <ion-img id="blah" *ngIf="imageSrc != null" [src]="imageSrc" alt="your image"></ion-img>
+      </ion-item>
+
+      
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button  shape="round" type="submit" [disabled]="formulario.invalid" (click)="UpdateCampaign()" expand="block"  routerDirection="root">
+      Guardar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

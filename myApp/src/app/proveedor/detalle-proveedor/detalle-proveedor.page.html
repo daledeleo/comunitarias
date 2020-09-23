@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/provider"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>Detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+      <ion-card>
+      
+        <ion-card-header>
+          <ion-item>
+          <ion-card-title>{{provider.name}}</ion-card-title>
+
+          <ion-button fill="outline" slot="end" (click)="dirigirpantalla(provider.id)">
+            <ion-icon name="people"></ion-icon>
+          </ion-button>
+          </ion-item>
+        </ion-card-header>
+
+        <ion-card-content>
+        <ion-card-subtitle color="dark">Dirección: </ion-card-subtitle>
+          {{provider.address}}
+        </ion-card-content>
+
+        
+        <ion-card-content>
+         <ion-card-subtitle color="dark">Telefono: </ion-card-subtitle>
+          {{provider.phoneNumber}}
+        </ion-card-content>
+
+        <ion-card-content>
+        <ion-card-subtitle color="dark">Email: </ion-card-subtitle>
+          {{provider.email}}
+          {{provider.categories}}
+        </ion-card-content>
+
+
+        <ion-card-content>  
+          <ion-card-subtitle color="dark">Categorias: </ion-card-subtitle>
+          <ng-container *ngFor="let prov of provider.categories">
+            <ng-container *ngFor="let categoria of categorias">
+              <ion-card-subtitle *ngIf="categoria.id == prov">{{categoria.name}}</ion-card-subtitle>
+             </ng-container>
+          </ng-container>
+        </ion-card-content>   
+      </ion-card>
+
+      
+</ion-content>

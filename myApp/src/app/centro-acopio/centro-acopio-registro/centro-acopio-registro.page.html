@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Centro Acopio
+      Registro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/centro-acopio"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registrationForm">
+    <ion-button color="success" slot='end' (click)='enviarDatosOk()' [hidden]='!verificarEdicion()'>Ok</ion-button>
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input inputmode="text" formControlName="nombre"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-label position="floating">Direccion</ion-label>
+        <ion-input inputmode="text" formControlName="direccion"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-label><strong>Información de la persona de contacto</strong>
+      </ion-label>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input inputmode="text" formControlName="nombre_persona_contacto"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Teléfono</ion-label>
+        <ion-input formControlName="telefono_persona_contacto"></ion-input>
+      </ion-item>
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.telefono_persona_contacto">
+          <div class="error-message"
+            *ngIf="registrationForm.get('telefono_persona_contacto').hasError(validation.type)">
+            {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </ion-card>
+
+    <ion-card>
+      <ion-grid class="ion-padding">
+        <ion-row>
+          <ion-label>La imagen del centro de acopio es opcional</ion-label>
+        </ion-row>
+        <ion-row>
+          <ion-input #myInput type='file' accept="image/*" name="photo" required (change)="readURL($event);"
+            class="fileInput"></ion-input>
+          <ion-label for="file">
+            <ion-icon name="images"></ion-icon> Images
+
+            <ion-button slot='end' fill="clear" color="danger" (click)="removeImage(myInput)">
+              <ion-icon name='close'></ion-icon>
+              <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+            </ion-button>
+          </ion-label>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="ion-padding" *ngIf="imageSrc != null">
+        <ion-label> Vista previa de la imagen</ion-label>
+        <ion-img id="blah" *ngIf="imageSrc != null" [src]="imageSrc" alt="your image"></ion-img>
+      </ion-grid>
+
+    </ion-card>
+
+    <ion-button expand='full' [disabled]="check()" (click)='sendData()' shape="round">
+      Ingresar ubicacion en el mapa<ion-icon slot="end" name="create"></ion-icon>
+    </ion-button>
+  </form>
+</ion-content>

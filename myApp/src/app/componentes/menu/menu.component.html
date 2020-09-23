@@ -1,0 +1,19 @@
+<ion-menu side="end" menuId="menu" contentId="principal">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <app-lista-menu></app-lista-menu>
+
+
+      <ion-item button (click)="cerrarsesion()">
+        <ion-icon slot="start" name="disc" style="color:#3575AC"></ion-icon>
+        <ion-label> <h3>Cerrar Sesion</h3> </ion-label>
+      </ion-item>
+    </ion-list>
+    
+  </ion-content>
+</ion-menu>

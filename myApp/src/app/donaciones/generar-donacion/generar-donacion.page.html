@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/donaciones"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Donacion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form #formulario="ngForm" (ngSubmit)="postDonaciones()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label>Proveedor</ion-label>
+        <ion-select placeholder="Seleccione uno" [(ngModel)]='formularios.proveedor' name='proveedor' required >   
+            <ion-select-option *ngFor="let provider of providers" value="{{provider.id}}">{{provider.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Categorias</ion-label>
+        <ion-select placeholder="Seleccione uno" required [(ngModel)]='formularios.categoria' name='categoria'>
+            <ion-select-option *ngFor="let categoria of categorias" value="{{categoria.id}}">{{categoria.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Centro de Acopio</ion-label>
+        <ion-select placeholder="Seleccione uno" [(ngModel)]='formularios.centroacopio' name="centroacopio">   
+            <ion-select-option *ngFor="let centrosAcopio of centrosAcopios" value="{{centrosAcopio.id}}">{{centrosAcopio.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-text>
+        <h5>Responsables</h5>
+      </ion-text>
+   
+      <ion-item>
+        <ion-label>Voluntario</ion-label>
+        <ion-select placeholder="Seleccione uno" value="1" multiple [(ngModel)]='formularios.voluntario' name="voluntario">   
+            <ion-select-option *ngFor="let voluntario of voluntarios" value="{{voluntario.user}}">{{voluntario.firstName}} {{voluntario.lastName}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Grupo de Apoyo</ion-label>
+        <ion-select placeholder="Seleccione uno" multiple [(ngModel)]='formularios.grupoapoyo' name="grupoapoyo">   
+            <ion-select-option *ngFor="let gruposApoyos of gruposApoyos" value="{{gruposApoyos.user}}">{{gruposApoyos.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Descripcion</ion-label>
+        <ion-textarea [(ngModel)]='formularios.description' name='description' autoGrow="true" minlength="1" required></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Fecha de inicio</ion-label>
+        <ion-datetime placeholder="Seleccionar fecha"  value="15-12-2020" display-timezone="utc" displayFormat="DD MMMM YYYY" max="2050" [(ngModel)]='formularios.BeginDate' name="BeginDate"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Fecha de caducidad</ion-label>
+        <ion-datetime placeholder="Seleccionar fecha" display-timezone="utc" displayFormat="DD MMMM YYYY" max="2050" [(ngModel)]='formularios.ExpirationDate' name='ExpirationDate'></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type='file' accept="image/*" name="photo" required [(ngModel)]='formularios.photo' (change)="readURL($event);" class="fileInput"></ion-input>
+        <ion-label for="file"><ion-icon name="images"></ion-icon> Images</ion-label>
+      </ion-item> 
+      <ion-item *ngIf="imageSrc != null">
+        <ion-img id="blah" *ngIf="imageSrc != null" [src]="imageSrc" alt="your image"></ion-img>
+      </ion-item>
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button  shape="round" type="submit" [disabled]="formulario.invalid" expand="block">
+      Guardar
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

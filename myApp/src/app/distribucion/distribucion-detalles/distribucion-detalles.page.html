@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalles de la Distribucion</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/distribucion"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label><strong>Lugar de Partida: </strong> {{distribucion.departureAddress}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><strong>Lugar de Destino: </strong> {{distribucion.destinationAddress}}</ion-label>
+    </ion-item>
+
+  <ion-card>
+    <ion-item>
+      <ion-label><strong>Tipo de encargado: </strong> {{encargadoTipo}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><strong>Nombre de encargado: </strong> {{encargadoNombre}}</ion-label>
+    </ion-item>
+  </ion-card>
+    <ion-item>
+      <ion-label><strong>information: </strong> {{distribucion.information}}</ion-label>
+    </ion-item>
+
+
+    <ion-grid class="ion-padding" *ngIf="booleanPhto">
+      <ion-label>Lugar de llegada</ion-label>
+      <ion-img src="{{distribucion.photo}}"></ion-img>
+    </ion-grid>
+
+  </ion-card>
+</ion-content>

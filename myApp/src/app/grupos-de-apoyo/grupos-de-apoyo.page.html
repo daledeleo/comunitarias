@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-buttons slot="end">
+      <ion-menu-button color = "primary" menu= "menu">
+      </ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title>Grupos de Apoyo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" [routerLink]="['./grupos-de-apoyo-registro']" routerDirection="root">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" 
+    pullingText="Pull to refresh"
+      refreshingSpinner="circles" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let grupo of gruposDeApoyo" >
+    <ion-item>
+      <ion-label>Acciones:</ion-label>
+      <ion-button fill="outline" slot="end" (click)='editar(grupo.id)'>
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="outline" slot="end" (click)="presentAlertConfirm(grupo.id)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-card-content (click)='goDetails(grupo.id)'>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label><b>Nombre: </b></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label><b>Usuario: </b></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label><b>Integrantes: </b></ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label>{{grupo.name}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{grupo.nombreuser}}</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label >{{grupo.members.length}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

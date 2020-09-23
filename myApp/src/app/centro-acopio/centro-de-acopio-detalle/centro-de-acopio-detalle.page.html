@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Centro de Acopio Detalles</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/centro-acopio"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label><strong>Nombre: </strong> {{centroAcopio.name}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label><strong>Direccion: </strong> {{centroAcopio.address}}</ion-label>
+    </ion-item>
+
+    <ion-card>
+      <ion-label><strong>Informacion de Persona de contacto</strong></ion-label><br><br>
+      <ion-item>
+        <ion-label><strong>Nombre: </strong> {{centroAcopio.contactName}}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><strong>Teléfono: </strong> {{centroAcopio.contactPhone}}</ion-label>
+      </ion-item>
+    </ion-card>
+
+    <ion-grid class="ion-padding" *ngIf="booelanPhoto">
+      <ion-label >Imagen del Centro de Acopio</ion-label>
+      <ion-img src="{{centroAcopio.photo}}"></ion-img>
+    </ion-grid>
+
+  </ion-card>
+
+</ion-content>

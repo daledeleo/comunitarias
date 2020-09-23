@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/campaign"></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>Detalle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+      <ion-card>
+        <ion-img src="{{campaign.photo}}"></ion-img>
+        <ion-card-header>
+          <ion-card-title>{{campaign.name}}</ion-card-title>
+          <ng-container *ngFor="let scope of Scopes">
+            <ion-card-subtitle *ngIf="scope.id == campaign.scope">Alcance: {{scope.name}}</ion-card-subtitle>
+          </ng-container>
+        </ion-card-header>
+        <ion-card-content>
+          {{campaign.description}}
+        </ion-card-content>
+        <ion-card-content>
+         <ion-card-subtitle>Contacto: </ion-card-subtitle>
+          {{campaign.contactName}}
+        </ion-card-content>
+      </ion-card>
+</ion-content>

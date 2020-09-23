@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ubicacion
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/centro-acopio/centro-acopio-registro"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-button float-right [disabled]="check_ubicacion()" (click)="enviarDatos()" routerLink="/centro-acopio">
+    <ion-icon name="checkmark"></ion-icon>Guardar
+  </ion-button>
+</ion-header>
+
+<ion-content>
+  <ion-label><b>Datos ingresados</b></ion-label><br><br>
+
+  <ion-card  class="ion-padding">
+    <ion-label><em>Nombre: </em>{{nombre}}</ion-label><br><br>
+    <ion-label><em>Direccion: </em>{{direccion}}</ion-label>
+  </ion-card>
+
+  <div id='mapId2' style="width: 100% ;height: 80%"></div>
+</ion-content>
