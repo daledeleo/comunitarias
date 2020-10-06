@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'mision-alianza'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_745b3851622b41eba3a68cd5205bcee1 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_cc9cc2d4c5c140e5a66dfec6fc66caee }}
         package: .
