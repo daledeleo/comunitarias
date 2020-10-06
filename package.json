@@ -37,7 +37,6 @@
     "@swimlane/ngx-datatable": "^17.0.0",
     "@types/jwt-decode": "^2.2.1",
     "@types/leaflet": "^1.5.12",
-    "axios": "^0.19.2",
     "com-badrit-base64": "^0.2.0",
     "cordova": "^10.0.0",
     "cordova-android": "9.0.0",
@@ -61,7 +60,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.803.24",
+    "@angular-devkit/build-angular": "^0.803.29",
     "@angular/cli": "~8.3.26",
     "@angular/compiler": "~8.2.14",
     "@angular/compiler-cli": "~8.2.14",
